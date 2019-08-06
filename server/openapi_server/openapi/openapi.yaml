@@ -1,0 +1,125 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: apiteam@swagger.io
+    name: Swagger API Team
+    url: http://swagger.io
+  description: A rest api for wings
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: wings
+  version: 1.0.0
+servers:
+- url: http://localhost:8080/v1.0.0
+paths:
+  /components:
+    post:
+      description: Creates a new instance of a `Component`.
+      operationId: create_component
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Component'
+        description: A new `Component` to be created.
+        required: true
+      responses:
+        201:
+          description: Successful response.
+      security: []
+      summary: Create a Component
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+  /datasets:
+    post:
+      description: Creates a new instance of a `Dataset`.
+      operationId: create_dataset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dataset'
+        description: A new `Dataset` to be created.
+        required: true
+      responses:
+        201:
+          description: Successful response.
+      security: []
+      summary: Create a Dataset
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      required:
+      - code
+      - message
+    Component:
+      example:
+        id: economic-v5
+        model_catalog_uri: https://w3id.org/okn/i/mint/ECONOMIC_AGGREGATE_CROP_SUPPLY
+        wings_instance:
+          username: user
+          password: password
+          domain: domain
+          export_url: http://localhost:8080
+          server: https://wings.mint.isi.edu
+      properties:
+        id:
+          description: The component id
+          type: string
+        model_catalog_uri:
+          description: The model catalog id
+          type: string
+        wings_instance:
+          $ref: '#/components/schemas/WingsInstance'
+      required:
+      - id
+      type: object
+    Dataset:
+      example:
+        id: data
+        type: type
+        url: url
+        wings_instance:
+          username: user
+          password: password
+          domain: domain
+          export_url: http://localhost:8080
+          server: https://wings.mint.isi.edu
+      properties:
+        id:
+          type: string
+        type: {}
+        url: {}
+        wings_instance: {}
+      required:
+      - id
+      - wings_instance
+      type: object
+    WingsInstance:
+      example:
+        username: user
+        password: password
+        domain: domain
+        export_url: http://localhost:8080
+        server: https://wings.mint.isi.edu
+      properties:
+        username: {}
+        password: {}
+        domain: {}
+        export_url: {}
+        server: {}
+      type: object
+  securitySchemes:
+    BearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+      x-bearerInfoFunc: openapi_server.controllers.user_controller.decode_token
