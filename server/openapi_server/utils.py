@@ -78,3 +78,5 @@ def upload_wcm_dataset(dataset):
             return {"data_id": wings_instance.data.get_data_id(data_id)}
     except Exception as err:
         raise err
+    finally:
+        wings_instance.logout()
