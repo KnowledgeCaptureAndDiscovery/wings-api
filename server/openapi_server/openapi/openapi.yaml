@@ -88,7 +88,7 @@ components:
         id: pongo-production.csv
         type: economic-price
         data_catalog_id: fb1e373b-ea73-461c-ade5-52c9489dc76d
-        data_catalog_uri: https://data.mint.isi.edu/files/economic//pongo-productioncost.csv
+        url: https://data.mint.isi.edu/files/economic//pongo-productioncost.csv
         wings_instance:
           username: user
           password: password
