@@ -104,7 +104,8 @@ components:
           type: string
         url:
           type: string
-        wings_instance: {}
+        wings_instance:
+          $ref: '#/components/schemas/WingsInstance'
       required:
       - id
       type: object

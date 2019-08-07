@@ -99,7 +99,9 @@ components:
           type: string
         url: 
           type: string
-        wings_instance: {}
+        wings_instance:
+          $ref: '#/components/schemas/WingsInstance'
+          description: ""
       example:
         id: pongo-production.csv
         type: economic-price
