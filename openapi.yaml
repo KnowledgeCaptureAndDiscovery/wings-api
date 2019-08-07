@@ -94,9 +94,12 @@ components:
       properties:
         id:
           type: string
-        type: string
-        data_catalog_id: string
-        url: string
+        type: 
+          type: string
+        data_catalog_id: 
+          type: string
+        url: 
+          type: string
         wings_instance: {}
       example:
         id: pongo-production.csv
