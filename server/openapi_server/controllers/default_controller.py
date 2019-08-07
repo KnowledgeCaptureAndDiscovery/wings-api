@@ -22,7 +22,7 @@ def create_component():  # noqa: E501
             component_wings = utils.upload_wcm(component)
             return component_wings
         except ValueError as err:
-            return "Unauthorized: ".format(err), 401, {}
+            return "Bad request: {}".format(err), 400, {}
         except HTTPError or RequestException as err:
             return "{}".format(err.args[0].reason), err.args[0].status_code, {}
         except Exception as err:
@@ -41,5 +41,14 @@ def create_dataset():  # noqa: E501
     :rtype: None
     """
     if connexion.request.is_json:
-        dataset = Dataset.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        try:
+            dataset = Dataset.from_dict(connexion.request.get_json())  # noqa: E501
+            dataset_wings = utils.upload_wcm_dataset(dataset)
+            return dataset_wings
+        except ValueError as err:
+            return "Unauthorized: ".format(err), 401, {}
+        except HTTPError or RequestException as err:
+            return "{}".format(err.args[0].reason), err.args[0].status_code, {}
+        except Exception as err:
+            return "Internal Error: {}".format(err.args[0].reason), 500, {}
+    return "Bad request", 400, {}

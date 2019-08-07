@@ -4,6 +4,8 @@ server/Dockerfile
 server/openapi_server/controllers/__init__.py
 server/openapi_server/controllers/default_controller.py
 
+server/openapi_server/models/dataset.py
+server/openapi_server/models/component.py
 
 server/openapi_server/__main__.py
 server/openapi_server/util.py

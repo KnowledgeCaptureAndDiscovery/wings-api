@@ -14,9 +14,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
 # Added by API Auto Mocking Plugin
-- description: SwaggerHub API Auto Mocking
-  url: https://virtserver.swaggerhub.com/mintproject/wings/1.0.0
-- url: http://petstore.swagger.io/api
+- url: https://api.wings.mint.isi.edu/v1.0.0
+- url: http://localhost:8080/v1.0.0
 paths:
   /components:
     post:
