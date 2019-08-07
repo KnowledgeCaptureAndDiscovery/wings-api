@@ -90,28 +90,25 @@ components:
       description: ""
       required:
       - id
-      - wings_instance
       type: object
       properties:
         id:
-          description: ""
           type: string
-        type:
-          description: ""
-        url:
-          description: ""
-        wings_instance:
-          description: ""
+        type: string
+        data_catalog_id: string
+        url: string
+        wings_instance: {}
       example:
-        id: data
-        type: type
-        url: url
+        id: pongo-production.csv
+        type: economic-price
+        data_catalog_id: fb1e373b-ea73-461c-ade5-52c9489dc76d
+        data_catalog_uri: https://data.mint.isi.edu/files/economic//pongo-productioncost.csv
         wings_instance:
           username: user
           password: password
           domain: domain
           export_url: http://localhost:8080
-          server: https://wings.mint.isi.edu             
+          server: https://wings.mint.isi.edu          
     WingsInstance:
       description: ""
       type: object

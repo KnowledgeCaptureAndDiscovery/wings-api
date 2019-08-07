@@ -1,5 +1,6 @@
 import connexion
 import six
+from requests import HTTPError, RequestException
 
 from openapi_server.models.component import Component  # noqa: E501
 from openapi_server.models.dataset import Dataset  # noqa: E501
@@ -22,8 +23,10 @@ def create_component():  # noqa: E501
             return component_wings
         except ValueError as err:
             return "Unauthorized: ".format(err), 401, {}
+        except HTTPError or RequestException as err:
+            return "{}".format(err.args[0].reason), err.args[0].status_code, {}
         except Exception as err:
-            return "Internal Error: {}".format(err), 500, {}
+            return "Internal Error: {}".format(err.args[0].reason), 500, {}
     return "Bad request", 400, {}
 
 

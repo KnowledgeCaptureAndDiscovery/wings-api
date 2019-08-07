@@ -85,9 +85,10 @@ components:
       type: object
     Dataset:
       example:
-        id: data
-        type: type
-        url: url
+        id: pongo-production.csv
+        type: economic-price
+        data_catalog_id: fb1e373b-ea73-461c-ade5-52c9489dc76d
+        data_catalog_uri: https://data.mint.isi.edu/files/economic//pongo-productioncost.csv
         wings_instance:
           username: user
           password: password
@@ -97,8 +98,9 @@ components:
       properties:
         id:
           type: string
-        type: {}
-        url: {}
+        type: string
+        data_catalog_id: string
+        url: string
         wings_instance: {}
       required:
       - id
