@@ -166,6 +166,3 @@ class WingsInstance(Model):
         """
 
         self._server = server
-
-    def __iter__(self):
-        return self.__dict__.iteritems()

@@ -15,34 +15,39 @@ class Dataset(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id=None, type=None, url=None, wings_instance=None):  # noqa: E501
+    def __init__(self, id=None, type=None, data_catalog_id=None, url=None, wings_instance=None):  # noqa: E501
         """Dataset - a model defined in OpenAPI
 
         :param id: The id of this Dataset.  # noqa: E501
         :type id: str
         :param type: The type of this Dataset.  # noqa: E501
-        :type type: object
+        :type type: str
+        :param data_catalog_id: The data_catalog_id of this Dataset.  # noqa: E501
+        :type data_catalog_id: str
         :param url: The url of this Dataset.  # noqa: E501
-        :type url: object
+        :type url: str
         :param wings_instance: The wings_instance of this Dataset.  # noqa: E501
         :type wings_instance: object
         """
         self.openapi_types = {
             'id': str,
-            'type': object,
-            'url': object,
+            'type': str,
+            'data_catalog_id': str,
+            'url': str,
             'wings_instance': object
         }
 
         self.attribute_map = {
             'id': 'id',
             'type': 'type',
+            'data_catalog_id': 'data_catalog_id',
             'url': 'url',
             'wings_instance': 'wings_instance'
         }
 
         self._id = id
         self._type = type
+        self._data_catalog_id = data_catalog_id
         self._url = url
         self._wings_instance = wings_instance
 
@@ -86,7 +91,7 @@ class Dataset(Model):
 
 
         :return: The type of this Dataset.
-        :rtype: object
+        :rtype: str
         """
         return self._type
 
@@ -96,10 +101,31 @@ class Dataset(Model):
 
 
         :param type: The type of this Dataset.
-        :type type: object
+        :type type: str
         """
 
         self._type = type
+
+    @property
+    def data_catalog_id(self):
+        """Gets the data_catalog_id of this Dataset.
+
+
+        :return: The data_catalog_id of this Dataset.
+        :rtype: str
+        """
+        return self._data_catalog_id
+
+    @data_catalog_id.setter
+    def data_catalog_id(self, data_catalog_id):
+        """Sets the data_catalog_id of this Dataset.
+
+
+        :param data_catalog_id: The data_catalog_id of this Dataset.
+        :type data_catalog_id: str
+        """
+
+        self._data_catalog_id = data_catalog_id
 
     @property
     def url(self):
@@ -107,7 +133,7 @@ class Dataset(Model):
 
 
         :return: The url of this Dataset.
-        :rtype: object
+        :rtype: str
         """
         return self._url
 
@@ -117,7 +143,7 @@ class Dataset(Model):
 
 
         :param url: The url of this Dataset.
-        :type url: object
+        :type url: str
         """
 
         self._url = url
@@ -140,7 +166,5 @@ class Dataset(Model):
         :param wings_instance: The wings_instance of this Dataset.
         :type wings_instance: object
         """
-        if wings_instance is None:
-            raise ValueError("Invalid value for `wings_instance`, must not be `None`")  # noqa: E501
 
         self._wings_instance = wings_instance

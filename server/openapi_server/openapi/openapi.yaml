@@ -12,8 +12,9 @@ info:
   title: wings
   version: 1.0.0
 servers:
-- url: https://api.wings.mint.isi.edu/v1.0.0
-- url: http://localhost:8080/v1.0.0
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/mintproject/wings/1.0.0
+- url: http://petstore.swagger.io/api
 paths:
   /components:
     post:
@@ -98,13 +99,15 @@ components:
       properties:
         id:
           type: string
-        type: string
-        data_catalog_id: string
-        url: string
+        type:
+          type: string
+        data_catalog_id:
+          type: string
+        url:
+          type: string
         wings_instance: {}
       required:
       - id
-      - wings_instance
       type: object
     WingsInstance:
       example:
