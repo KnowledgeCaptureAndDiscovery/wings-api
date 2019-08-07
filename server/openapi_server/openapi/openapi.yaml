@@ -12,6 +12,7 @@ info:
   title: wings
   version: 1.0.0
 servers:
+- url: https://api.wings.mint.isi.edu/v1.0.0
 - url: http://localhost:8080/v1.0.0
 paths:
   /components:
