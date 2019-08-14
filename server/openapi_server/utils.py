@@ -17,7 +17,7 @@ def download_extract_zip(url, dir):
     if isinstance(directories, list):
         try:
             for ignore_dir in ignore_dirs:
-                directories.remove()
+                directories.remove(ignore_dir)
         except:
             pass
 
