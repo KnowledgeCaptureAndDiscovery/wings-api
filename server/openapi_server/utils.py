@@ -61,7 +61,7 @@ def upload_wcm(component):
     with tempfile.TemporaryDirectory(prefix="component") as dir:
         component_dir = download_extract_zip(component_url, dir)
         try:
-            return _component.deploy_component(component_dir, creds=wings_instance)
+            return _component.deploy_component(component_dir, creds=wings_instance, force=True)
         except Exception as err:
             raise err
 
