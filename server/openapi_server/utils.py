@@ -6,16 +6,23 @@ import os
 from wcm import _component, _utils
 import wings
 
+ignore_dirs = ["__MACOSX"]
 def download_extract_zip(url, dir):
     temp = tempfile.NamedTemporaryFile(prefix="component_")
     content = download_file(url)
     temp.write(content)
     with ZipFile(temp.name, 'r') as zip:
         zip.extractall(dir)
-    list = os.listdir(dir)
-    list.remove("__MACOSX")
-    if len(list) == 1:
-        return os.path.join(dir, list[0])
+    directories = os.listdir(dir)
+    if isinstance(directories, list):
+        try:
+            for ignore_dir in ignore_dirs:
+                directories.remove()
+        except:
+            pass
+
+    if len(directories) == 1:
+        return os.path.join(dir, directories[0])
     else:
         raise ValueError("The zipfile must has one directory.")
 
