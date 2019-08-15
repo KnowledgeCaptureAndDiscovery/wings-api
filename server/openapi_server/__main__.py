@@ -3,7 +3,7 @@
 import connexion
 
 from openapi_server import encoder
-
+from flask_cors import CORS
 
 def main():
     app = connexion.App(__name__, specification_dir='./openapi/')
@@ -11,6 +11,7 @@ def main():
     app.add_api('openapi.yaml',
                 arguments={'title': 'wings'},
                 pythonic_params=True)
+    CORS(app.app)
     app.run(port=8080)
 
 
