@@ -6,7 +6,7 @@ from openapi_server.models.component import Component  # noqa: E501
 from openapi_server.models.dataset import Dataset  # noqa: E501
 from openapi_server import utils
 
-def create_component():  # noqa: E501
+def create_component(overwrite):  # noqa: E501
     """Create a Component
 
     Creates a new instance of a &#x60;Component&#x60;. # noqa: E501
@@ -19,7 +19,7 @@ def create_component():  # noqa: E501
     if connexion.request.is_json:
         try:
             component = Component.from_dict(connexion.request.get_json())  # noqa: E501
-            component_wings = utils.upload_wcm(component)
+            component_wings = utils.upload_wcm(component, overwrite)
             return component_wings
         except ValueError as err:
             return "Bad request: {}".format(err), 400, {}

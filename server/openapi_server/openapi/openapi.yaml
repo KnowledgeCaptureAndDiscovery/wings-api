@@ -19,6 +19,16 @@ paths:
     post:
       description: Creates a new instance of a `Component`.
       operationId: create_component
+      parameters:
+      - description: Overwrite the component
+        explode: true
+        in: query
+        name: overwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       requestBody:
         content:
           application/json:

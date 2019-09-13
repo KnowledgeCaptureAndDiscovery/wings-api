@@ -54,14 +54,14 @@ def obtain_link(model_catalog_uri):
     return model_catalog_uri
 
 
-def upload_wcm(component):
+def upload_wcm(component, overwrite):
     model_catalog_url = component.model_catalog_uri
     wings_instance = component.wings_instance.to_dict()
     component_url = obtain_link(model_catalog_url)
     with tempfile.TemporaryDirectory(prefix="component") as dir:
         component_dir = download_extract_zip(component_url, dir)
         try:
-            return _component.deploy_component(component_dir, creds=wings_instance, force=True)
+            return _component.deploy_component(component_dir, creds=wings_instance, overwrite=overwrite)
         except Exception as err:
             raise err
 

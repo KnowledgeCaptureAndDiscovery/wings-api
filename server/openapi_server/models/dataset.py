@@ -64,7 +64,6 @@ class Dataset(Model):
         """
         return util.deserialize_model(dikt, cls)
 
-
     @property
     def id(self):
         """Gets the id of this Dataset.
