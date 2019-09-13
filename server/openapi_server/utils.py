@@ -1,4 +1,4 @@
-
+import json
 from zipfile import ZipFile
 import tempfile
 import requests
@@ -7,6 +7,34 @@ from wcm import _component, _utils
 import wings
 
 ignore_dirs = ["__MACOSX"]
+
+
+def check_request(resp):
+    try:
+        resp.raise_for_status()
+    except requests.exceptions.HTTPError:
+        raise requests.exceptions.HTTPError
+    except requests.exceptions.RequestException:
+        raise requests.exceptions.RequestException
+    return resp
+
+
+def query_wcm_zip():
+    headers = {
+        'accept': 'application/json',
+    }
+
+    params = (
+        ('config', 'https://w3id.org/mint/instance/pihm'),
+        ('endpoint', 'https://endpoint.mint.isi.edu/ds/query'),
+    )
+
+    url = "https://query.mint.isi.edu/api/mintproject/MINT-ModelCatalogQueries/getConfigIParameters"
+    response = requests.get(url, headers=headers, params=params)
+    json.dumps(check_request(response))
+    #
+    return url
+
 def download_extract_zip(url, dir):
     temp = tempfile.NamedTemporaryFile(prefix="component_")
     content = download_file(url)
@@ -56,6 +84,7 @@ def obtain_link(model_catalog_uri):
 
 def upload_wcm(component, overwrite):
     model_catalog_url = component.model_catalog_uri
+    file_zip_url = component.
     wings_instance = component.wings_instance.to_dict()
     component_url = obtain_link(model_catalog_url)
     with tempfile.TemporaryDirectory(prefix="component") as dir:
