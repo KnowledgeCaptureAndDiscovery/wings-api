@@ -77,9 +77,6 @@ components:
         id:
           description: The component id
           type: string
-        zip_file_url:
-          description: The url of zipfile.
-          type: string
         model_catalog_uri:
           description: The model catalog id
           type: string
@@ -88,7 +85,6 @@ components:
           description: ""
       example:
         id: economic-v5
-        zip_file_url: https://github.com/mintproject/MINT-WorkflowDomain/blob/master/WINGSWorkflowComponents/economic-v6/economic-v6.zip?raw=true
         model_catalog_uri: https://w3id.org/okn/i/mint/ECONOMIC_AGGREGATE_CROP_SUPPLY
         wings_instance:
           username: user
