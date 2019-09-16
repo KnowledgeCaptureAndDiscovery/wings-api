@@ -63,7 +63,6 @@ def upload_wcm(component, overwrite):
         component_dir = download_extract_zip(component_url, dir)
         try:
             component = _component.deploy_component(component_dir, creds=wings_instance, overwrite=overwrite)
-            logger.info("component description".format(component))
             return component
         except Exception as err:
             raise err

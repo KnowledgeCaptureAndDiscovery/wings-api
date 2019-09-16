@@ -4,7 +4,7 @@ from requests import HTTPError, RequestException
 
 from openapi_server.models.component import Component  # noqa: E501
 from openapi_server.models.dataset import Dataset  # noqa: E501
-from openapi_server import utils
+from openapi_server import utils, logger
 
 def create_component(overwrite):  # noqa: E501
     """Create a Component
@@ -18,14 +18,19 @@ def create_component(overwrite):  # noqa: E501
     """
     if connexion.request.is_json:
         try:
+            logger.info("full path: {}".format(connexion.request.full_path))
+            logger.info("request body: {}".format(connexion.request.get_json()))
             component = Component.from_dict(connexion.request.get_json())  # noqa: E501
             component_wings = utils.upload_wcm(component, overwrite)
             return component_wings
         except ValueError as err:
+            logger.error("Value error", exc_info=True)
             return "Bad request: {}".format(err), 400, {}
         except HTTPError or RequestException as err:
+            logger.error("HTTP error", exc_info=True)
             return "{}".format(err.args[0].reason), err.args[0].status_code, {}
         except Exception as err:
+            logger.error("Exception error", exc_info=True)
             return "Internal Error: {}".format(err.args[0].reason), 500, {}
     return "Bad request", 400, {}
 

@@ -2,6 +2,8 @@ version: '3'
 services:
   dev:
     image: "mint-project/api-wings:latest"
+    environment:
+      - LOGLEVEL=INFO
     build:
       context: .
       dockerfile: Dockerfile
