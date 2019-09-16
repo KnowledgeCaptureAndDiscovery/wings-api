@@ -1,3 +1,6 @@
+test-prod.sh
+test.sh
+server/.gitignore
 .idea/
 server/.idea/
 server/.idea/*
