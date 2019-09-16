@@ -20,7 +20,7 @@ semver==2.8.1
 six==1.12.0
 swagger-ui-bundle==0.0.2
 urllib3==1.25.3
-wcm>=0.1.0
+wcm>=0.1.1
 Werkzeug==0.15.5
 wings>=1.3.6
 yamlordereddictloader==0.4.0
