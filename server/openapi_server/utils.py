@@ -5,8 +5,9 @@ import requests
 import os
 from wcm import _component, _utils
 import wings
-
+from openapi_server import logger
 ignore_dirs = ["__MACOSX"]
+
 def download_extract_zip(url, dir):
     temp = tempfile.NamedTemporaryFile(prefix="component_")
     content = download_file(url)
@@ -61,7 +62,9 @@ def upload_wcm(component, overwrite):
     with tempfile.TemporaryDirectory(prefix="component") as dir:
         component_dir = download_extract_zip(component_url, dir)
         try:
-            return _component.deploy_component(component_dir, creds=wings_instance, overwrite=overwrite)
+            component = _component.deploy_component(component_dir, creds=wings_instance, overwrite=overwrite)
+            logger.info("component description".format(component))
+            return component
         except Exception as err:
             raise err
 
