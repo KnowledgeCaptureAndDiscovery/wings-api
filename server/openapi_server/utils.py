@@ -74,17 +74,16 @@ def upload_wcm_dataset(dataset):
     data_type = dataset.type
     data_catalog_id = dataset.data_catalog_id
     url = dataset.url
-    metadata_properties_data_type = {"data_catalog_id": "string"}
-    metadata_properties_data = {"data_catalog_id": data_catalog_id}
+    #metadata_properties_data_type = {"data_catalog_id": "string"}
+    #metadata_properties_data = {"data_catalog_id": data_catalog_id}
     try:
         wings_instance.data.new_data_type(data_type, None)
-        wings_instance.data.add_type_properties(data_type, properties=metadata_properties_data_type)
+        data_id = wings_instance.data.add_remote_data_for_type(url, data_type)
+        # The following methods tend to be expensive. Taking them out for now
+        #wings_instance.data.add_type_properties(data_type, properties=metadata_properties_data_type)
+        #wings_instance.data.save_metadata(data_id, metadata_properties_data)
 
-        with tempfile.TemporaryDirectory(prefix="data_") as dir:
-            data_file = download_data_file(url, dir)
-            data_id = wings_instance.data.upload_data_for_type(data_file, data_type)
-            wings_instance.data.save_metadata(data_id, metadata_properties_data)
-            return {"data_id": wings_instance.data.get_data_id(data_id)}
+        return {"data_id": data_id}
     except Exception as err:
         raise err
     finally:
