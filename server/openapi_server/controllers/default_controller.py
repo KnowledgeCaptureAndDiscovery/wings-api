@@ -47,6 +47,8 @@ def create_dataset():  # noqa: E501
     """
     if connexion.request.is_json:
         try:
+            logger.info("full path: {}".format(connexion.request.full_path))
+            logger.info("request body: {}".format(connexion.request.get_json()))
             dataset = Dataset.from_dict(connexion.request.get_json())  # noqa: E501
             dataset_wings = utils.upload_wcm_dataset(dataset)
             return dataset_wings
